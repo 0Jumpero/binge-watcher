@@ -88,22 +88,23 @@ async function select(id, tab){
 
   content.innerHTML = 
     `<div class="content-details">
-      <div class="content-details-backdrop" style="background-image: url(${backdrop}"></div>
-      <div class="content-details-text">
-        <h2>${title}</h2>
-        <p>${release}
+      <div class="content-details-backdrop" style="background-image: url(${backdrop}">
+        <div class="content-details-text">
+          <h2>${title}</h2>
+          <p>${release}
+            <br>
+            Score: ${res.vote_average}
+          </p>
           <br>
-          Score: ${res.vote_average}
-        </p>
-        <br>
-        <p>
-          <b>Summary:</b>
-          <br>
-          ${res.overview}
-        </p>
-        <br><br><br><br>
-        <h1>Runtime</h1>
-        ${runtimes}
+          <p>
+            <b>Summary:</b>
+            <br>
+            ${res.overview}
+          </p>
+          <br><br><br><br>
+          <h1>Runtime</h1>
+          ${runtimes}
+        </div>
       </div>
     </div>`;
   // Select total runtime by default 
