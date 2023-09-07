@@ -33,7 +33,7 @@ async function runtime(id, seasons, runtime){
   if(runtime){
     let h = Math.floor(runtime/60);
     let m = runtime - h * 60;
-    return `<h1 id="runtime">${(h)?h+"h ":""}${(m)?m+"min":""}</h1>`;
+    return `<h1>${(h)?h+"h ":""}${(m)?m+"min":""}</h1>`;
   }
  
   let total = 0;
@@ -83,30 +83,31 @@ async function select(id, tab){
 
   let title = (res.original_name) ? res.original_name : res.original_title;
   let release = res.genres[0].name + "  " + ((tab == "movie") ? ( res.release_date.split("-")[0] ) : ( res.first_air_date.split("-")[0] + "-" + res.last_air_date.split("-")[0] ));
-  let runtimes = (tab == "movie") ? await runtime(id, null, res.runtime) : await runtime(id, res.number_of_seasons, null);
   let backdrop = (res.backdrop_path) ? ("https://image.tmdb.org/t/p/original" + res.backdrop_path) : "";
 
   content.innerHTML = 
-    `<div class="content-details">
-      <div class="content-details-backdrop" style="background-image: url(${backdrop}">
-        <div class="content-details-text">
-          <h2>${title}</h2>
-          <p>${release}
-            <br>
-            Score: ${res.vote_average}
-          </p>
+  `<div class="content-details">
+    <div class="content-details-backdrop" style="background-image: url(${backdrop}">
+      <div class="content-details-text" id="details">
+        <h2>${title}</h2>
+        <p>${release}
           <br>
-          <p>
-            <b>Summary:</b>
-            <br>
-            ${res.overview}
-          </p>
-          <br><br><br><br>
-          <h1>Runtime</h1>
-          ${runtimes}
-        </div>
+          Score: ${res.vote_average}
+        </p>
+        <br>
+        <p>
+          <b>Summary:</b>
+          <br>
+          ${res.overview}
+        </p>
+        <br><br><br><br>
+        <h1>Runtime</h1>
       </div>
-    </div>`;
+    </div>
+  </div>`;
+
+  // Add runtime after calculation
+  document.getElementById("details").innerHTML += (tab == "movie") ? await runtime(id, null, res.runtime) : await runtime(id, res.number_of_seasons, null);
   // Select total runtime by default 
   document.getElementById("total").click();
 }
