@@ -1,0 +1,111 @@
+body {
+  background-color: lightgray;
+  margin: 0px;
+  padding: 0px;
+  background-color: grey;
+}
+
+.bar {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px 1px 3px black;
+  background-color: white;
+}
+
+.bar-search {
+  display: block;
+  background-color: rgba(0,0,0,0.35);
+  width: 100vw;
+  border: none;
+  margin: 0px;
+  line-height: 50px;
+  padding: 5px 20px;
+  font-size: large;
+}
+
+.bar-search:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bar-button {
+  width: 50vw;
+  margin: 0px;
+  background-color: rgba(0,0,0,0.2);
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.bar-button:hover {
+  background-color: rgba(0,0,0,0.24);
+}
+
+.bar-button:active {
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.bar-active {
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.bar-pill {
+  position: absolute;
+  width: 50%;
+  height: 3px;
+  background-color: blue;
+  top: 110px;
+  left: 0%;
+  transition: left 1s;
+}
+
+.content {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.content-result {
+  width: 200px;
+  height: 300px;
+  margin: 12px;
+  background-color: rgba(0,0,0,0.1);
+  background-size: 100% auto;
+  cursor: pointer;
+}
+
+.content-result-title {
+  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+  padding: 15px;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+}
+
+.content-details {
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  color: white;
+  display: flex;
+  width: 100vw;
+}
+
+.content-details-backdrop {
+  background-color: rgba(0,0,0,0.8);
+  padding: 100px;
+  text-shadow: 0px 0px 10px black;
+  width: 100vw;
+}
+
+h1 {
+  text-align: center;
+}
+
+span {
+  cursor: pointer;
+}

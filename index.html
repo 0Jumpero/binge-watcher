@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Binge Watcher</title>
+    <meta name="descripion" content="Binge Watcher is a tool to calculate movie and show runtime. It accesses TMDB database API to calculate total ime needed to watch selected content.">
+    <meta name="author" content="0Jumpero">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <body>
+    <nav class="bar">
+      <input type="search" class="bar-search" placeholder="Search for a name of a movie or a series" onkeyup="search(this.value)">
+      <div class="bar-button bar-active" onclick="nav(0)">Movies</div>
+      <div class="bar-button" onclick="nav(1)">Shows</div>
+      <div class="bar-pill"></div>
+    </nav>
+    <div class="content"></div>
+  </body>
+</html>
