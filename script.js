@@ -1,4 +1,4 @@
-// Settings for TMDB API calls, replace the API-Read-Access-Token
+// Settings for TMDB API calls, replace the API-Read-Access-Token with the one you got
 const options = {
   method: 'GET',
   headers: {
@@ -84,11 +84,12 @@ async function select(id, tab){
   let title = (res.original_name) ? res.original_name : res.original_title;
   let release = res.genres[0].name + "  " + ((tab == "movie") ? ( res.release_date.split("-")[0] ) : ( res.first_air_date.split("-")[0] + "-" + res.last_air_date.split("-")[0] ));
   let runtimes = (tab == "movie") ? await runtime(id, null, res.runtime) : await runtime(id, res.number_of_seasons, null);
-  let backdrop = (res.backdrop_path) ? ("https://image.tmdb.org/t/p/original/" + res.backdrop_path) : "";
+  let backdrop = (res.backdrop_path) ? ("https://image.tmdb.org/t/p/original" + res.backdrop_path) : "";
 
   content.innerHTML = 
-    `<div class="content-details" style="background-image: url(${backdrop}">
-      <div class="content-details-backdrop">
+    `<div class="content-details">
+      <div class="content-details-backdrop" style="background-image: url(${backdrop}"></div>
+      <div class="content-details-text">
         <h2>${title}</h2>
         <p>${release}
           <br>
@@ -122,7 +123,7 @@ async function search(query){
   content.innerHTML = "";
   for(let e of res.results){
     title = (e.original_name) ? e.original_name : e.original_title;
-    poster = (e.poster_path) ? "https://image.tmdb.org/t/p/original/" + e.poster_path : "";
+    poster = (e.poster_path) ? "https://image.tmdb.org/t/p/original" + e.poster_path : "";
     content.innerHTML += 
       `<div class="content-result" style="background-image: url(${poster})" onclick="select(${e.id}, '${tab}')">
         <div class="content-result-title">${title}</div>
