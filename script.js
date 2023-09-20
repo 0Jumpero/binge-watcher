@@ -1,3 +1,15 @@
+// Replace with your API-Read-Access-Token
+const token = 'your-token-goes-here';
+
+// Settings for TMDB API calls, replace the API-Read-Access-Token
+const options = {
+  method: 'GET',
+  headers: {
+    'accept': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+}
+
 // Register service worker 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js')
@@ -7,15 +19,6 @@ if ('serviceWorker' in navigator) {
   .catch(function(error) {
     console.error('Service Worker registration failed:', error);
   });
-}
-
-// Settings for TMDB API calls, replace the API-Read-Access-Token
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer API-Read-Access-Token'
-  }
 }
 
 // Switch between movies and shows
@@ -134,6 +137,13 @@ async function search(query){
   let poster, title;
   
   let res = await fetch(url, options);
+  // Check response for error
+  if(!res.ok) {
+    res = await res.json();
+    content.innerHTML = `<div class="content-result"><div class="content-result-title">${res.status_message}</div></div>`;
+    return
+  }
+  // If response ok display results
   res = await res.json();
   content.innerHTML = "";
   for(let e of res.results){
