@@ -1,4 +1,15 @@
-// Settings for TMDB API calls, replace the API-Read-Access-Token with the one you got
+// Register service worker 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+  .then(function(registration) {
+    console.log('Service Worker registered with scope:', registration.scope);
+  })
+  .catch(function(error) {
+    console.error('Service Worker registration failed:', error);
+  });
+}
+
+// Settings for TMDB API calls, replace the API-Read-Access-Token
 const options = {
   method: 'GET',
   headers: {
@@ -27,7 +38,7 @@ function nav(tab){
   search(document.getElementsByClassName("bar-search")[0].value);
 }
 
-// Calculation of runtume
+// Calculation of runtime
 async function runtime(id, seasons, runtime){
   // If calculating a movie, return runtime from API
   if(runtime){
@@ -102,12 +113,14 @@ async function select(id, tab){
         </p>
         <br><br><br><br>
         <h1>Runtime</h1>
+        <div id="loading"></div>
       </div>
     </div>
   </div>`;
 
   // Add runtime after calculation
   document.getElementById("details").innerHTML += (tab == "movie") ? await runtime(id, null, res.runtime) : await runtime(id, res.number_of_seasons, null);
+  document.getElementById("loading").remove();
   // Select total runtime by default 
   document.getElementById("total").click();
 }

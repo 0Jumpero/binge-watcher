@@ -1,3 +1,12 @@
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 body {
   background-color: rgb(25,25,25) !important;
   margin: 0px;
@@ -117,4 +126,25 @@ h1 {
 
 span {
   cursor: pointer;
+}
+
+#loading {
+  content: " ";
+  display: block;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 6px dotted white;
+  border-color: white transparent transparent transparent ;
+  animation: loading 1.2s ease infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
