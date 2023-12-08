@@ -1,13 +1,11 @@
 {
   "name": "Binge Watcher",
-  "short_name": "Binge",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "short_name": "Binger",
+  "start_url": ".",
   "display": "standalone",
-  "scope": "/app/",
-  "start_url": "./index.html",
-  "icons": 
-  [
+  "background_color": "#000",
+  "theme_color": "#000",
+  "icons": [
     {
       "src": "img/icon-72.png",
       "sizes": "72x72",
