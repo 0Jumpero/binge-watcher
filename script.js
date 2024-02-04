@@ -19,6 +19,17 @@ if('serviceWorker' in navigator) {
   );
 }
 
+// Back button capture
+window.addEventListener('load', function () {
+  window.history.pushState({}, '');
+  search(document.getElementsByClassName("bar-search")[0].value);
+});
+
+window.addEventListener('popstate', function () {
+  window.history.pushState({}, '');
+  search(document.getElementsByClassName("bar-search")[0].value);
+});
+
 // Switch between movies and shows
 function nav(tab) {
   const movies = document.getElementsByClassName("bar-button")[0];
