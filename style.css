@@ -3,16 +3,19 @@ html::-webkit-scrollbar {
 }
 
 html {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 body {
-  background-color: rgb(25,25,25) !important;
+  background-color: rgb(25, 25, 25) !important;
   margin: 0px;
   padding: 0px;
   background-color: grey;
   font-family: 'Roboto', sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .bar {
@@ -26,7 +29,7 @@ body {
 
 .bar-search {
   display: block;
-  background-color: rgba(0,0,0,0.35);
+  background-color: rgba(0, 0, 0, 0.35);
   width: 100vw;
   border: none;
   margin: 0px;
@@ -43,7 +46,7 @@ body {
 .bar-button {
   width: 50vw;
   margin: 0px;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   text-align: center;
   line-height: max(50px, min(70px, calc((100vh - 100vw) * 9999)));
   cursor: pointer;
@@ -53,7 +56,7 @@ body {
 }
 
 .bar-button:hover {
-  background-color: rgba(0,0,0,0.24);
+  background-color: rgba(0, 0, 0, 0.24);
 }
 
 .bar-button:active {
@@ -85,13 +88,13 @@ body {
   width: 200px;
   height: 300px;
   margin: 12px;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   background-size: 100% auto;
   cursor: pointer;
 }
 
 .content-result-title {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
   padding: 15px;
   color: white;
@@ -120,7 +123,7 @@ body {
   padding: 10px 100px;
   text-shadow: 0px 0px 10px black;
   width: 100vw;
-  background-image: repeating-linear-gradient(rgba(25,25,25,0.8), rgb(25,25,25) 25%, rgb(25,25,25) 100%);
+  background-image: repeating-linear-gradient(rgba(25, 25, 25, 0.8), rgb(25, 25, 25) 25%, rgb(25, 25, 25) 100%);
 }
 
 h1 {
@@ -139,7 +142,7 @@ span {
   height: 64px;
   border-radius: 50%;
   border: 6px dotted white;
-  border-color: white transparent transparent transparent ;
+  border-color: white transparent transparent transparent;
   animation: loading 1.2s ease infinite;
 }
 
@@ -147,6 +150,7 @@ span {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
