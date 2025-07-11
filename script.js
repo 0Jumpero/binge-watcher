@@ -8,7 +8,7 @@ const options = {
 }
 
 // Register service worker 
-if('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js').then(
     (registration) => {
       console.log('Service Worker registered with scope:', registration.scope);
@@ -36,7 +36,7 @@ function nav(tab) {
   const shows = document.getElementsByClassName("bar-button")[1];
   const pill = document.getElementsByClassName("bar-pill")[0];
 
-  if(tab) {
+  if (tab) {
     movies.classList.remove("bar-active");
     shows.classList.add("bar-active");
     pill.style.left = "50%";
@@ -53,7 +53,7 @@ function nav(tab) {
 // Calculation of runtime
 async function runtime(id, seasons, runtime) {
   // If calculating a movie, return runtime from API
-  if(runtime) {
+  if (runtime) {
     let h = Math.floor(runtime / 60);
     let m = runtime - h * 60;
     return `<h1>${(h) ? h + "h " : ""}${(m) ? m + "min" : ""}</h1>`;
@@ -66,12 +66,12 @@ async function runtime(id, seasons, runtime) {
   runtime = 0;
 
   // If calculating a show loop through seasons
-  for(let i = 1; i <= seasons; i++) {
+  for (let i = 1; i <= seasons; i++) {
     let res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${i}`, options);
     res = await res.json();
 
     // Loop through episodes and add up season runtime and total runtime
-    for(let episode of res.episodes) runtime += episode.runtime;
+    for (let episode of res.episodes) runtime += episode.runtime;
     total += runtime;
 
     totalEp += ep = res.episodes.length;
@@ -96,7 +96,7 @@ async function runtime(id, seasons, runtime) {
 // Updater for selected season runtime
 function updateRuntime(runtime, ep, span) {
   document.getElementById('runtime').innerHTML = `${ep} episodes<br>${runtime}`;
-  for(let b of document.getElementsByTagName('span')) b.style.color = "";
+  for (let b of document.getElementsByTagName('span')) b.style.color = "";
   span.style.color = "rgb(64,64,255)";
 }
 
@@ -109,7 +109,8 @@ async function select(id, tab) {
   res = await res.json();
 
   let title = (res.original_name) ? res.original_name : res.original_title;
-  let release = res.genres[0].name + "  " + ((tab == "movie") ? (res.release_date.split("-")[0]) : (res.first_air_date.split("-")[0] + "-" + res.last_air_date.split("-")[0]));
+  let genre = res.genres[0].name;
+  let release = ((tab == "movie") ? res.release_date : (res.first_air_date.split("-")[0] + "-" + res.last_air_date.split("-")[0]));
   let backdrop = (res.backdrop_path) ? ("https://image.tmdb.org/t/p/original" + res.backdrop_path) : "";
 
   content.innerHTML =
@@ -117,8 +118,9 @@ async function select(id, tab) {
     <div class="content-details-backdrop" style="background-image: url(${backdrop}">
       <div class="content-details-text" id="details">
         <h2>${title}</h2>
-        <p>${release}
-          <br>
+        <p>
+          ${genre}<br>
+          ${release}<br>
           Score: ${res.vote_average}
         </p>
         <br>
@@ -151,7 +153,7 @@ async function search(query) {
 
   let res = await fetch(url, options);
   // Check response for error
-  if(!res.ok) {
+  if (!res.ok) {
     res = await res.json();
     content.innerHTML = `<div class="content-result"><div class="content-result-title">${res.status_message}</div></div>`;
     return
@@ -159,7 +161,7 @@ async function search(query) {
   // If response ok display results
   res = await res.json();
   content.innerHTML = "";
-  for(let e of res.results) {
+  for (let e of res.results) {
     title = (e.original_name) ? e.original_name : e.original_title;
     poster = (e.poster_path) ? "https://image.tmdb.org/t/p/original" + e.poster_path : "";
     content.innerHTML +=
